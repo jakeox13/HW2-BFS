@@ -1,4 +1,5 @@
 import networkx as nx
+import warnings
 from collections import deque
 class Graph:
     """
@@ -14,13 +15,21 @@ class Graph:
 
     def bfs(self, start, end=None):
         """
-        TODO: write a method that performs a breadth first traversal and pathfinding on graph G
+        The goal of this function is to traverse a graph in a breadth first manner. It will either traverse all nodes or find the shortest path between two nodes
 
-        * If there's no end node input, return a list nodes with the order of BFS traversal
-        * If there is an end node input and a path exists, return a list of nodes with the order of the shortest path
-        * If there is an end node input and a path does not exist, return None
+        Args:
+            start (string): The label on the node to start traversal or shortest path search
+            end (string, optional): The label on the ending node for path first  Defaults to None.
 
-        """
+        Raises:
+            ValueError: If graph is empty
+            ValueError: If starting node given is not in graph
+            ValueError: If the ending node given is not in graph
+
+        Returns:
+            list: If only starting node , returns all nodes connected in order of traversal. if end is given it is shortest path between nodes, ifn not connected , returns None
+        """        
+
         # Check to make sure inputs are valid
 
         # Check for empty graph
@@ -42,35 +51,49 @@ class Graph:
         # Add starting node to queue
         Q.append(start)
         
+        # Initlize search sucess
         end_found=False
+
+        # This sets up my path recording
         # Create a dictionary of paths taken to each node
         path= dict()
         # Add the start to the path of all others
         path[start]=[start]
-        # Loop through node
+
+        # Loop through nodes and then neighbors until all avaiable nodes traversed or end of search found
         while Q and not end_found:
+            
             # Get first value in queue
             v=Q.popleft()
             # get neighbors of node you are investigating
             n = self.graph.adj[v]
 
-            # Check if each neighbor has been visted if visted pass
+            # Check if each neighbor has been visted and if visted pass
             for w in n:
                 if w not in visited:
                     # If not visited add to queue and add to visted list
                     visited.append(w)
                     Q.append(w)
+
                     # Set the path of current to path of previous + current
                     if end != None:
                         path[w]=path[v]+[w]
+
                     # If this is end node stop searching
                     if w == end:
                         end_found= True
 
-
+        # If no end node was given return all traverse nodes
         if end == None:
+            # Warn user if not all graph is visited
+            if len(list(set(self.graph.nodes)-set(visited))):
+                warnings.warn("Warning, not all nodes traversed")
             return visited
+        
+        # If ending node was vaild but not found
         elif end_found == False:
             return None
+        
+        # Will trigger if end was found and returns the path taken to the node
         else:
             return path[end]
