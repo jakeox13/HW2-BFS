@@ -1,4 +1,2 @@
 networkx==2.5
-pytest>=3.0
-collections
-warnigns
+pytest>=7.4
