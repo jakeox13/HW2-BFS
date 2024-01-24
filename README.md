@@ -2,7 +2,7 @@
 Breadth-first search
 
 # Assignment Overview
-The purpose of this assignment is to get you comfortable working with graph structures and to implement a breadth-first search function to traverse the graph and find the shortest path between nodes.
+The purpose of this assignment is to get me comfortable working with graph structures and to implement a breadth-first search function to traverse the graph and find the shortest path between nodes.
 
 # Assignment Tasks
 
@@ -30,6 +30,7 @@ In test/test_bfs.py:
 
 * Write unit tests (in the test_bfs.py file) for your breadth first search
 * Replace these instructions with a brief description of bfs in your forked repo
+
 	
 * Automate Testing with a [Github Actions](https://docs.github.com/en/actions)
 
@@ -75,3 +76,4 @@ Make sure to push all your code to github, ensure that your unit tests are corre
 * Readable code with clear comments and method descriptions
 * Updated README with description of your methods
 
+I Have completed these assignements
