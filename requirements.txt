@@ -1,4 +1,4 @@
 networkx==2.5
 pytest>=3.0
-collections >=3.3
-warnigns >=3.12
+collections
+warnigns
